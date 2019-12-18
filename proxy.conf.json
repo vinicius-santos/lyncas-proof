@@ -1,0 +1,14 @@
+{
+	"/proofs": {
+		"target": "http://localhost:7030/proofs",
+		"secure": "false"
+	},
+	"/questions": {
+		"target": "http://localhost:7030/questions",
+		"secure": "false"
+	},
+	"/answers": {
+		"target": "http://localhost:7030/answers",
+		"secure": "false"
+	}
+}

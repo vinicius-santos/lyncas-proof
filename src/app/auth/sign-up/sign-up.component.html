@@ -1,0 +1,40 @@
+<div *ngIf="isLogged">
+    <app-toolbar></app-toolbar>
+</div>
+<div class="container">
+    <form ngNativeValidate>
+        <div class="card">
+            <div class="card-header">Professor</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input required [(ngModel)]="user.name" name="name" type="text" class="form-control" id="name" aria-describedby="name" />
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input required [(ngModel)]="user.email" name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="usuario@email.com" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="userpassword">Senha</label>
+                            <div class="input-group">
+                                <input minlength="6" maxlength="20" [(ngModel)]="passwordUser" name="userpassword" type="password" class="form-control" id="userpassword" aria-describedby="userpassword" placeholder="mínimo 6 caracteres" (blur)="verifyPasswordUser($event)" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <mat-hint>{{ passwordUser?.length || 0 }}/20</mat-hint>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
