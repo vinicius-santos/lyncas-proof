@@ -14,9 +14,28 @@ import { ToastrModule } from 'ngx-toastr';
 import { ROUTING } from './app.routing';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DecriptEncript } from './security/decriptencript';
+import { ProofRegisterComponent } from './proof-register/proof-register.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { QuestionRegisterComponent } from './question-register/question-register.component';
+import { AnswersResultComponent } from './answers-result/answers-result.component';
+import { ProofPerformComponent } from './proof-perform/proof-perform.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule }   from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
-	declarations: [ AppComponent, SignUpComponent, SignInComponent, LogoutComponent ],
+	declarations: [
+		AppComponent,
+		SignUpComponent,
+		SignInComponent,
+		LogoutComponent,
+		ProofRegisterComponent,
+		ToolbarComponent,
+		QuestionRegisterComponent,
+		AnswersResultComponent,
+		ProofPerformComponent
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -27,7 +46,10 @@ import { DecriptEncript } from './security/decriptencript';
 			positionClass: 'toast-top-right'
 		}),
 		HttpClientModule,
-		ROUTING
+		ROUTING,
+		MatFormFieldModule,
+		FormsModule,
+		BrowserAnimationsModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

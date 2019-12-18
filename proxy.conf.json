@@ -10,5 +10,9 @@
 	"/answers": {
 		"target": "http://localhost:7030/answers",
 		"secure": "false"
+	},
+	"/users": {
+		"target": "http://localhost:7030/users",
+		"secure": "false"
 	}
 }

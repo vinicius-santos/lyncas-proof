@@ -5,7 +5,13 @@ export const environment = {
 	paths: {
 		proofs: 'proofs',
 		questions: 'questions',
-		answers: 'answers'
+		answers: 'answers',
+		users: 'users'
+	},
+	actions: {
+		update: 'update',
+		authenticate: 'authenticate',
+		add: 'add'
 	},
 	secret: '154097$#@$^@1ETI'
 };

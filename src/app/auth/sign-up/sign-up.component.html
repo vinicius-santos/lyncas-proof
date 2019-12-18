@@ -4,16 +4,16 @@
 <div class="container">
     <form ngNativeValidate>
         <div class="card">
-            <div class="card-header">Professor</div>
+            <div class="card-header">Cadastro de avaliador</div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label for="name">Nome</label>
                             <input required [(ngModel)]="user.name" name="name" type="text" class="form-control" id="name" aria-describedby="name" />
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input required [(ngModel)]="user.email" name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="usuario@email.com" />
@@ -33,7 +33,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="row mt-3">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1">
+                <button  class="form-control btn-primary"  type="submit" id="clean" (click)="clean()">
+                    Limpar
+                </button>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-1">
+                <button  class="form-control btn-success"  type="submit" id="save" (click)="save()">
+                    Salvar
+                </button>
             </div>
         </div>
     </form>

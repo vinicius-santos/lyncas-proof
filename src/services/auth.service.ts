@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import jwt from 'jsonwebtoken';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from 'src/models/user';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,7 +16,10 @@ export class AuthService {
 	private currenTokenSubject: BehaviorSubject<any>;
 	public currentToken: Observable<any>;
 
-	constructor(private http: HttpClient, private decriptEncript: DecriptEncript) {}
+	constructor(private http: HttpClient, private decriptEncript: DecriptEncript) {
+		this.currenTokenSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentToken')));
+		this.currentToken = this.currenTokenSubject.asObservable();
+	}
 
 	public get currenTokenValue(): any {
 		return this.currenTokenSubject.value;
@@ -34,6 +38,10 @@ export class AuthService {
 		return true;
 	}
 
+	public getUserName() {
+		return JSON.parse(localStorage.getItem('userName'));
+	}
+
 	cleanStorage() {
 		localStorage.removeItem('currentToken');
 		localStorage.removeItem('currentUserId');
@@ -48,9 +56,37 @@ export class AuthService {
 		this.cleanStorage();
 	}
 
+	public signup(user: User, resolve, reject) {
+		if (user._id === undefined) {
+			this.add(user, resolve, reject);
+		} else {
+			this.update(user, resolve, reject);
+		}
+	}
+
+	add(user: User, resolve, reject) {
+		try {
+			this.http.post(environment.uri + `/${environment.paths.users}`, user).subscribe((res) => {
+				resolve(res);
+			});
+		} catch (err) {
+			reject(err);
+		}
+	}
+
+	update(user: User, resolve, reject) {
+		try {
+			this.http.put(environment.uri + `${environment.paths.users}/${user._id}`, user).subscribe((res) => {
+				resolve(res);
+			});
+		} catch (err) {
+			reject(err);
+		}
+	}
+
 	public login(email: string, password: string) {
 		return this.http
-			.post<any>(`${environment.uri}/user/authenticate`, {
+			.post<any>(`${environment.uri}/${environment.paths.users}/${environment.actions.authenticate}`, {
 				email: email
 			})
 			.pipe(
